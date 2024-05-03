@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarefas em Time</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Tarefas em Time</h1>
+      <button id="openTaskCreation">Adicionar Tarefa</button>
+    </header>
+
+    <form id="taskCreationWindow">
+      <button id="closeTaskCreation">X</button>
+      <div class="inputArea">
+        <label for="taskInput">Tarefa:</label>
+        <input type="text" id="taskInput" />
+      </div>
+      <button id="createSubTask">Adicionar Sub-tarefa</button>
+      <span class="subTasksContainer"></span>
+      <div class="inputArea">
+        <label for="assignedPersonInput">Pessoa Designada:</label>
+        <input type="text" id="assignedPersonInput" />
+      </div>
+      <button>Adicionar Tarefa</button>
+    </form>
+  </body>
+</html>
