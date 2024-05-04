@@ -1,4 +1,4 @@
-export default class Task {
+export class Task {
   constructor(taskTitle, completionPercentage, subTasks, assignedPerson) {
     this.taskTitle = taskTitle
     this.completionPercentage = completionPercentage
