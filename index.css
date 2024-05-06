@@ -1,9 +1,0 @@
-#taskCreationWindow {
-  display: none;
-}
-
-#openTaskCreation {
-  text-align: right;
-  justify-content: right;
-  display: flex;
-}

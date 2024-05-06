@@ -4,30 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tarefas em Time</title>
-    <link rel="stylesheet" href="index.css" />
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" type="module" defer></script>
+    <script src="./Modules/Task.js" type="module" defer></script>
   </head>
   <body>
-    <header>
-      <h1>Tarefas em Time</h1>
-      <button id="openTaskCreation">Adicionar Tarefa</button>
-    </header>
-
-    <form id="taskCreationWindow">
-      <button id="closeTaskCreation">X</button>
-      <div class="inputArea">
-        <label for="taskInput">Tarefa:</label>
-        <input type="text" id="taskInput" />
-      </div>
-      <button id="createSubTask">Adicionar Sub-tarefa</button>
-      <div id="subTasksContainer"></div>
-      <div class="inputArea">
-        <label for="assignedPersonInput">Pessoa Designada:</label>
-        <input type="text" id="assignedPersonInput" />
-      </div>
-      <button id="addTaskButton">Confirmar Tarefa</button>
-    </form>
-
-    <main></main>
+    <header><h1>Tarefas em Time</h1></header>
+    <main>
+      <section>
+        <button id="openTaskCreation">Adicionar Tarefa</button>
+        <form id="taskCreationWindow">
+          <button id="closeTaskCreation">X</button>
+          <div>
+            <label for="taskInput">Tarefa:</label>
+            <input type="text" id="taskInput" />
+          </div>
+          <div>
+            <label for="personInput">Pessoa Designada:</label>
+            <input type="text" id="personInput" />
+          </div>
+          <button id="addSubTask">Adicionar Sub-tarefa</button>
+          <div id="subTaskContainer"></div>
+          <button id="submitTask">Confirmar Tarefa</button>
+        </form>
+      </section>
+      <section class="tasksContainer"></section>
+    </main>
   </body>
 </html>
