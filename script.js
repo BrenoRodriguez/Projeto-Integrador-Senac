@@ -1,15 +1,8 @@
 const taskCreationWindow = document.querySelector("#taskCreationWindow")
 const taskStorage = []
 
-class SubTask {
-  constructor(title) {
-    this.title = title
-    this.isComplete = false
-    this.percentageValue = Task.calcPercentageEachSubTask()
-  }
-}
 class Task {
-  constructor(taskTitle, completionPercentage, subTasks, assignedPerson) {
+  constructor(taskTitle, subTasks, assignedPerson) {
     this.taskTitle = taskTitle
     this.completionPercentage = 0
     this.subTasks = [subTasks]
@@ -18,8 +11,17 @@ class Task {
   }
   calcPercentageEachSubTask() {
     const lengthSubtask = this.subTasks.length
-    const percentageAmountEach = floor(100 / lengthSubtask)
-    return percentageAmountEach
+    const percentageAmountEach = Math.floor(100 / lengthSubtask)
+    this.subTasks.forEach(function (subtask) {
+      subtask.percentageValue = percentageAmountEach
+    })
+  }
+}
+class SubTask {
+  constructor(title) {
+    this.title = title
+    this.isComplete = false
+    this.percentageValue
   }
 }
 // Open Task Creation Window:
@@ -75,9 +77,38 @@ document.querySelector("#addTaskButton").addEventListener("click", function (ev)
   taskObject.taskTitle = `${document.querySelector("#taskInput").value}`
   taskObject.subTasks = subTasksForTask
   taskObject.assignedPerson = `${document.querySelector("#assignedPersonInput").value}`
-  taskStorage.push(taskObject)
+  taskObject.calcPercentageEachSubTask()
+  displayTask(taskObject)
   document.querySelector("#taskInput").value = ""
   document.querySelector("#assignedPersonInput").value = ""
   subTasksContainerMain.replaceChildren()
   taskCreationWindow.style.display = "none"
 })
+
+/* Display Tasks */
+
+function displayTask(taskParam) {
+  const taskDiv = document.createElement("div")
+  const taskHeader = document.createElement("h2")
+  const allSubTasks = document.createElement("div")
+  const taskPercentage = document.createElement("p")
+  const taskPerson = document.createElement("p")
+
+  taskParam.subTasks.forEach(function (subtask) {
+    const subTaskContainer = document.createElement("div")
+    const subTaskText = document.createElement("h3")
+    const subTaskInput = document.createElement("input")
+    subTaskText.innerText = subtask.title
+    subTaskInput.type = "checkbox"
+    subTaskInput.dataset = `${subtask.percentageValue}`
+    subTaskContainer.className = "subTaskContainer"
+    subTaskContainer.append(subTaskText, subTaskInput)
+    allSubTasks.append(subTaskContainer)
+  })
+
+  taskPercentage.innerText = "0%"
+  taskHeader.innerText = taskParam.taskTitle
+  taskPerson.innerText = taskParam.assignedPerson
+  taskDiv.append(taskHeader, taskPercentage, taskPerson, allSubTasks)
+  document.querySelector("main").append(taskDiv)
+}
