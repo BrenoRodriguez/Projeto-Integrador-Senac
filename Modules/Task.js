@@ -10,7 +10,7 @@ export class Task {
     const containerLength = this.subTaskContainer.length
     const subTaskPercentage = Math.floor(100 / containerLength)
     this.subTaskContainer.forEach(function (subTaskParam) {
-      subTaskParam.subTaskPercentage = subTaskPercentage
+      subTaskParam.percentageValue = subTaskPercentage
     })
   }
 }

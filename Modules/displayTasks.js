@@ -29,6 +29,7 @@ export function displayTask(taskParam) {
   taskPerson.className = "taskPerson"
   taskPercentage.innerText = "0%"
   taskPercentage.className = "taskPercentage"
+  taskWrapper.className = "taskCard"
 
   taskWrapper.append(taskTitle, taskPerson, taskPercentage, subTasksContainer)
   taskContainer.append(taskWrapper)

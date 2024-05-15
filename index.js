@@ -3,12 +3,12 @@ import { Task } from "./Modules/Task.js"
 import { displayTask } from "./Modules/displayTasks.js"
 
 const taskCreationWindow = document.querySelector("#taskCreationWindow")
-
+let counterSubTask = 0
 // Open Task Creation Window:
 
 document.querySelector("#openTaskCreation").addEventListener("click", function (ev) {
   ev.preventDefault()
-  taskCreationWindow.style.display = "block"
+  taskCreationWindow.style.display = "flex"
 })
 
 // Close Task Creation Window:
@@ -19,37 +19,40 @@ document.querySelector("#closeTaskCreation").addEventListener("click", function 
 })
 
 // Add and Remove Sub-Task:
-
 document.querySelector("#addSubTask").addEventListener("click", function (ev) {
+
   ev.preventDefault()
-  const subTaskContainer = document.querySelector("#subTaskContainer")
-  const subTaskDiv = document.createElement("div")
-  const subTaskLabel = document.createElement("label")
-  const subTaskInput = document.createElement("input")
-  const subTaskRemove = document.createElement("button")
+  if (counterSubTask <= 4){
+    const subTaskContainer = document.querySelector("#subTaskContainer")
+    const subTaskDiv = document.createElement("div")
+    const subTaskHeader = document.createElement("div")
+    const subTaskLabel = document.createElement("label")
+    const subTaskInput = document.createElement("input")
+    const subTaskRemove = document.createElement("i")
+    // Setting Up:
+    subTaskHeader.className = "subTaskHeader"
+    subTaskDiv.className = "subTaskDiv"
+    subTaskLabel.innerText = "Sub-Tarefa"
+    subTaskLabel.className = "labels subTaskLabel"
+    subTaskInput.type = "text"
+    subTaskInput.className = "inputs subTaskInput"
+    subTaskRemove.className = "fa-solid fa-xmark closeMark removeTaskButton"
 
-  // Setting Up:
+    // Removing:
 
-  subTaskDiv.className = "subTaskDiv"
-  subTaskLabel.innerText = "Sub-Tarefa:"
-  subTaskLabel.className = "subTaskLabel"
-  subTaskInput.type = "text"
-  subTaskInput.className = "subTaskInput"
-  subTaskRemove.innerText = "X"
-  subTaskRemove.className = "removeTaskButton"
+    subTaskRemove.addEventListener("click", function (ev) {
+      ev.preventDefault()
+      const subTaskElement = subTaskRemove.parentElement.parentElement
+      subTaskElement.remove()
+      counterSubTask--
+    })
+    counterSubTask++
+    // Adding:
+    subTaskHeader.append(subTaskLabel, subTaskRemove)
+    subTaskDiv.append(subTaskHeader, subTaskInput)
+    subTaskContainer.appendChild(subTaskDiv)
+  }
 
-  // Removing:
-
-  subTaskRemove.addEventListener("click", function (ev) {
-    ev.preventDefault()
-    const subTaskElement = subTaskRemove.parentElement
-    subTaskElement.remove()
-  })
-
-  // Adding:
-
-  subTaskDiv.append(subTaskLabel, subTaskInput, subTaskRemove)
-  subTaskContainer.appendChild(subTaskDiv)
 })
 
 // Storage Task:
@@ -65,6 +68,7 @@ document.querySelector("#submitTask").addEventListener("click", function (ev) {
   // Storage Sub-Task:
   document.querySelectorAll(".subTaskDiv").forEach(function (container) {
     let newSubTask = new SubTask()
+    newSubTask.percentageValue = newTask.subTaskPercentage()
     newSubTask.title = `${container.querySelector(".subTaskInput").value}`
     newTask.subTaskContainer.push(newSubTask)
   })
@@ -72,7 +76,7 @@ document.querySelector("#submitTask").addEventListener("click", function (ev) {
   // Assigning Values:
   newTask.taskTitle = `${taskInput.value}`
   newTask.assignedPerson = `${personInput.value}`
-  newTask.subTaskPercentage()
+
   displayTask(newTask)
 
   // Cleaning Inputs:

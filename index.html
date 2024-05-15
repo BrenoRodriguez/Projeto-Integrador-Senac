@@ -7,25 +7,38 @@
     <link rel="stylesheet" href="style.css" />
     <script src="index.js" type="module" defer></script>
     <script src="./Modules/Task.js" type="module" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8cd2da9ef2.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <header><h1>Tarefas em Time</h1></header>
+    <header class="header">
+      <h1>Tarefas em Time</h1>
+      <button id="openTaskCreation" class="button">Adicionar Tarefa</button>
+    </header>
     <main>
-      <section>
-        <button id="openTaskCreation">Adicionar Tarefa</button>
-        <form id="taskCreationWindow">
-          <button id="closeTaskCreation">X</button>
-          <div>
-            <label for="taskInput">Tarefa:</label>
-            <input type="text" id="taskInput" />
+      <section id="taskCreationWindow">
+        <form id="taskCreationCard">
+          <div class="taskCreationHeader">
+            <h2>Adicionar Tarefa</h2>
+            <div id="closeTaskCreation">
+              <i class="fa-solid fa-xmark closeMark"></i>
+            </div>
           </div>
-          <div>
-            <label for="personInput">Pessoa Designada:</label>
-            <input type="text" id="personInput" />
+          <div class="taskCreationBody">
+            <div class="taskInputWrapper">
+              <label for="taskInput" class="labels">Tarefa</label>
+              <input type="text" id="taskInput" class="inputs"/>
+            </div>
+            <div class="personInputWrapper">
+              <label for="personInput" class="labels">Pessoa Designada</label>
+              <input type="text" id="personInput" class="inputs" />
+            </div>
+            <button id="addSubTask" class="button">Adicionar Sub-tarefa</button>
+            <div id="subTaskContainer"></div>
+            <button id="submitTask" class="button">Confirmar Tarefa</button>
           </div>
-          <button id="addSubTask">Adicionar Sub-tarefa</button>
-          <div id="subTaskContainer"></div>
-          <button id="submitTask">Confirmar Tarefa</button>
         </form>
       </section>
       <section class="tasksContainer"></section>
