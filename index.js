@@ -4,6 +4,7 @@ import { displayTask } from "./Modules/displayTasks.js"
 
 const taskCreationWindow = document.querySelector("#taskCreationWindow")
 let counterSubTask = 0
+
 // Open Task Creation Window:
 
 document.querySelector("#openTaskCreation").addEventListener("click", function (ev) {
@@ -68,10 +69,15 @@ document.querySelector("#submitTask").addEventListener("click", function (ev) {
   // Storage Sub-Task:
   document.querySelectorAll(".subTaskDiv").forEach(function (container) {
     let newSubTask = new SubTask()
-    newSubTask.percentageValue = newTask.subTaskPercentage()
     newSubTask.title = `${container.querySelector(".subTaskInput").value}`
     newTask.subTaskContainer.push(newSubTask)
   })
+
+  //Sub Task Value
+  newTask.subTaskContainer.forEach(function(subTaskparam){
+    subTaskparam.percentageValue = newTask.subTaskPercentage()
+  })
+
 
   // Assigning Values:
   newTask.taskTitle = `${taskInput.value}`
