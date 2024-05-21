@@ -159,10 +159,10 @@ body{
 
 .tasksContainer{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   row-gap: 2rem;
   margin: 2rem;
-  gap: 5rem;
+  column-gap: 7rem;
 }
 .taskCard{
   font-family: "Inter", sans-serif;
@@ -209,4 +209,44 @@ body{
 .subTaskTitle{
   font-size: 1.05rem;
   font-weight: 500;
+}
+
+
+@media(max-width: 1770px){
+  .tasksContainer{
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media(max-width: 1492px){
+  .tasksContainer{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media(max-width: 1116px){
+  .tasksContainer{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media(max-width: 707px){
+  .tasksContainer{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width:610px) {
+  .header h1{
+    font-size: 1.5rem;
+
+  }
+  #openTaskCreation {
+    font-size: 1rem;
+    padding: 0.5rem 0.5rem;
+  }
+}
+@media(max-width:410px){
+  .header{
+    flex-direction: column;
+  }
 }
